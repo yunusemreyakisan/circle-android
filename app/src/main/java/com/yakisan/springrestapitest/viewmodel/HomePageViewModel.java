@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.yakisan.springrestapitest.adapter.GameAdapter;
 import com.yakisan.springrestapitest.databinding.ActivityHomepageBinding;
@@ -25,6 +26,14 @@ import retrofit2.Response;
 public class HomePageViewModel extends ViewModel {
     //BASE_URL -> http://10.0.2.2:8080/
 
+    //Tum sayfayi yeniler.
+    public void refresh(ActivityHomepageBinding binding, Context context, ArrayList<Game> games, GameAdapter adapter){
+        binding.swipeRefresh.setOnRefreshListener(() -> {
+            games.clear();
+            getAllGames(binding, context, games, adapter);
+            binding.swipeRefresh.setRefreshing(false);
+        });
+    }
 
 
     //Tüm oyunlari getirir.

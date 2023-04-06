@@ -42,6 +42,14 @@ public class HomePage extends AppCompatActivity {
         viewModel.getAllGames(binding,this, games, adapter);
 
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Tum sayfayi yeniler.
+        viewModel.refresh(binding,this, games, adapter);
     }
 
     //initialize

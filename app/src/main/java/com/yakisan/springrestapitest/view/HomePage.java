@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.yakisan.springrestapitest.adapter.GameAdapter;
 import com.yakisan.springrestapitest.databinding.ActivityHomepageBinding;
@@ -54,7 +55,8 @@ public class HomePage extends AppCompatActivity {
 
     //initialize
     public void initialize() {
-        binding.rvGames.setLayoutManager(new LinearLayoutManager(this));
+        StaggeredGridLayoutManager sgm = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        binding.rvGames.setLayoutManager(sgm);
         games = new ArrayList<>();
         adapter = new GameAdapter(this, games);
         binding.rvGames.setAdapter(adapter);

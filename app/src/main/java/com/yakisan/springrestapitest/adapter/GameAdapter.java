@@ -46,13 +46,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.VH> {
                 .load(imageUrlBig)
                 .into(holder.imgBig);
 
-        String imageUrlSmall = game.getImageUrl();
-        Glide.with(context)
-                .load(imageUrlSmall)
-                .into(holder.imgSmall);
-
-
-
     }
 
     @Override
@@ -63,14 +56,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.VH> {
     //ViewHolder
     public static class VH extends RecyclerView.ViewHolder{
         TextView name, description, genre;
-        ImageView imgBig, imgSmall;
+        ImageView imgBig;
         public VH(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.tvGameName);
             description = itemView.findViewById(R.id.tvShortDescription);
             genre = itemView.findViewById(R.id.tvGenre);
             imgBig = itemView.findViewById(R.id.gameThumbnailBig);
-            imgSmall = itemView.findViewById(R.id.gameThumbnailSmall);
         }
     }
 }

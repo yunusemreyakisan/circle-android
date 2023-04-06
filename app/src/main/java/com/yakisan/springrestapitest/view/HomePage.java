@@ -1,27 +1,30 @@
 package com.yakisan.springrestapitest.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.yakisan.springrestapitest.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.yakisan.springrestapitest.adapter.GameAdapter;
 import com.yakisan.springrestapitest.databinding.ActivityHomepageBinding;
-import com.yakisan.springrestapitest.model.User;
+import com.yakisan.springrestapitest.model.Game;
+import com.yakisan.springrestapitest.service.API;
 import com.yakisan.springrestapitest.viewmodel.HomePageViewModel;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomePage extends AppCompatActivity {
-    List<User> users = new ArrayList<>();
+    ArrayList<Game> games = new ArrayList<>();
+    GameAdapter adapter;
     ActivityHomepageBinding binding;
     HomePageViewModel viewModel;
 
@@ -31,12 +34,23 @@ public class HomePage extends AppCompatActivity {
         binding = ActivityHomepageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         //Viewmodel Binding
         viewModel = ViewModelProviders.of(this).get(HomePageViewModel.class);
-        viewModel.getAllUsers(getApplicationContext());
+        //RV initialize
+        initialize();
+        //oyunları getirir.
+        viewModel.getAllGames(binding,this, games, adapter);
 
 
     }
+
+    //initialize
+    public void initialize() {
+        binding.rvGames.setLayoutManager(new LinearLayoutManager(this));
+        games = new ArrayList<>();
+        adapter = new GameAdapter(this, games);
+        binding.rvGames.setAdapter(adapter);
+    }
+
 
 }

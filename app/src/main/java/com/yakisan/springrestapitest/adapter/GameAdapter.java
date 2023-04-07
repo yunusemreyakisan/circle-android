@@ -1,11 +1,13 @@
 package com.yakisan.springrestapitest.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +47,15 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.VH> {
         Glide.with(context)
                 .load(imageUrlBig)
                 .into(holder.imgBig);
+
+        //Click Listener
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(context, "ID: " + game.getId(), Toast.LENGTH_SHORT).show();
+                Log.e("Tiklanilan ID: ", game.getId() + " " + game.getName());
+            }
+        });
 
     }
 

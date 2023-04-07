@@ -41,6 +41,8 @@ public class HomePage extends AppCompatActivity {
         initialize();
         //oyunları getirir.
         viewModel.getAllGames(binding,this, games, adapter);
+        //fab islevini yerine getirir.
+        viewModel.fabClicked(binding, this);
 
 
 

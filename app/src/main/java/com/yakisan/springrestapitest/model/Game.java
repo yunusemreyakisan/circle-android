@@ -1,15 +1,23 @@
 package com.yakisan.springrestapitest.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 /**
  * Created by yunusemreyakisan on 30.03.2023
  */
 public class Game {
+
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("description")
     private String description;
+    @SerializedName("imageUrl")
     private String imageUrl;
+    @SerializedName("genre")
     private String genre;
 
     public Game() {
@@ -17,6 +25,13 @@ public class Game {
 
     public Game(int id, String name, String description, String imageUrl, String genre) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.genre = genre;
+    }
+
+    public Game(String name, String description,  String genre, String imageUrl) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;

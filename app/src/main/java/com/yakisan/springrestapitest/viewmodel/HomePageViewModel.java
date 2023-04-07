@@ -1,6 +1,7 @@
 package com.yakisan.springrestapitest.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.yakisan.springrestapitest.adapter.GameAdapter;
 import com.yakisan.springrestapitest.databinding.ActivityHomepageBinding;
 import com.yakisan.springrestapitest.model.Game;
 import com.yakisan.springrestapitest.service.API;
+import com.yakisan.springrestapitest.view.AddNewGame;
 import com.yakisan.springrestapitest.view.HomePage;
 
 import java.util.ArrayList;
@@ -64,5 +66,14 @@ public class HomePageViewModel extends ViewModel {
         });
     }
 
+
+    //FAB islevi
+    public void fabClicked(ActivityHomepageBinding binding, Context context){
+        binding.extendedFab.setOnClickListener(v -> {
+            Intent intent = new Intent(context, AddNewGame.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
+    }
 
 }

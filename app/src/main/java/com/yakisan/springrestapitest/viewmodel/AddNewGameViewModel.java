@@ -46,7 +46,7 @@ public class AddNewGameViewModel extends ViewModel {
                 public void onResponse(@NonNull Call<ArrayList<Game>> call, @NonNull Response<ArrayList<Game>> response) {
                     assert response.body() != null;
                     Log.e("Başarılı: ", response.body().toString());
-                    Toast.makeText(context, "Response: " + response.body().get(0).getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Eklenen oyun: " + response.body().get(response.body().size() - 1).getName(), Toast.LENGTH_SHORT).show();
 
                     if (response.isSuccessful()) {
                         Intent intent = new Intent(context, HomePage.class);

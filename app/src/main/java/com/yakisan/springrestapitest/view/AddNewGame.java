@@ -20,7 +20,7 @@ public class AddNewGame extends AppCompatActivity {
 
         //ViewModel Binding
         viewModel = ViewModelProviders.of(this).get(AddNewGameViewModel.class);
-
+        //Oyunu kaydeder.
         viewModel.saveAndPostNewGame(binding, this);
 
 

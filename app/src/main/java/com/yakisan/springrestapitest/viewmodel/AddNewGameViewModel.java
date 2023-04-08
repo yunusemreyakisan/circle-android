@@ -13,18 +13,21 @@ import androidx.lifecycle.ViewModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.yakisan.springrestapitest.databinding.ActivityAddNewGameBinding;
 import com.yakisan.springrestapitest.model.Game;
 import com.yakisan.springrestapitest.service.API;
 import com.yakisan.springrestapitest.view.AddNewGame;
 import com.yakisan.springrestapitest.view.HomePage;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddNewGameViewModel extends ViewModel {
-    boolean durum = false;
     //Post game
     public void isPostNewGame(ActivityAddNewGameBinding binding, Context context) {
         //TextField bilesenlerinin iceriginin alinmasi
@@ -37,42 +40,36 @@ public class AddNewGameViewModel extends ViewModel {
             Toast.makeText(context, "Boş geçilemez", Toast.LENGTH_SHORT).show();
         } else {
             //Veritabanına POST isleminin yapilmasi
-            Call<Game> call = API.getRetrofitClient().createNewGame(new Game(gameName, gameDesc, gameGenre, imageUrl));
-            call.enqueue(new Callback<Game>() {
+            Call<ArrayList<Game>> call = API.getRetrofitClient().createNewGame(new Game(gameName, gameDesc, gameGenre, imageUrl));
+            call.enqueue(new Callback<ArrayList<Game>>() {
                 @Override
-                public void onResponse(@NonNull Call<Game> call, @NonNull Response<Game> response) {
+                public void onResponse(@NonNull Call<ArrayList<Game>> call, @NonNull Response<ArrayList<Game>> response) {
+                    assert response.body() != null;
                     Log.e("Başarılı: ", response.body().toString());
+                    Toast.makeText(context, "Response: " + response.body().get(0).getName(), Toast.LENGTH_SHORT).show();
 
-                    durum = true;
-
+                    if (response.isSuccessful()) {
+                        Intent intent = new Intent(context, HomePage.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<Game> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<ArrayList<Game>> call, @NonNull Throwable t) {
                     Log.e("Response Hatası: ", t.getMessage());
-                    durum = false;
                 }
             });
         }
     }
-
-    //TODO: E/ResponseHatası:: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was BEGIN_ARRAY at line 1 column 2 path $
 
     //Yeni oyunun kaydedilmesi
     public void saveAndPostNewGame(ActivityAddNewGameBinding binding, Context context) {
         binding.containedButton.setOnClickListener(v -> {
             //Oyunu kaydet
             isPostNewGame(binding, context);
-            if(durum){
-                Intent intent = new Intent(context, HomePage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-
         });
     }
-
-
 
 
 }

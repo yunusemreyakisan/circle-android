@@ -17,7 +17,7 @@ public interface APIService {
     Call<ArrayList<Game>> getAllGames();
 
     @POST("/add")
-    Call<Game> createNewGame(@Body Game game);
+    Call<ArrayList<Game>> createNewGame(@Body Game game);
 
     //TODO: PUT, DELETE, POST işlemlerini ekle.
 

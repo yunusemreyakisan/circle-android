@@ -44,11 +44,11 @@ public class AddNewGameViewModel extends ViewModel {
             call.enqueue(new Callback<ArrayList<Game>>() {
                 @Override
                 public void onResponse(@NonNull Call<ArrayList<Game>> call, @NonNull Response<ArrayList<Game>> response) {
-                    assert response.body() != null;
-                    Log.e("Başarılı: ", response.body().toString());
-                    Toast.makeText(context, "Eklenen oyun: " + response.body().get(response.body().size() - 1).getName(), Toast.LENGTH_SHORT).show();
-
                     if (response.isSuccessful()) {
+                        assert response.body() != null;
+                        Log.e("Başarılı: ", response.body().toString());
+                        Toast.makeText(context, "Eklenen oyun: " + response.body().get(response.body().size() - 1).getName(), Toast.LENGTH_SHORT).show();
+                        //Diger sayfaya yonlendirme
                         Intent intent = new Intent(context, HomePage.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);

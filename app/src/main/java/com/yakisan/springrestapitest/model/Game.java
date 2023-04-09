@@ -23,7 +23,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(int id, String name, String description, String imageUrl, String genre) {
+    public Game(int id, String name, String description, String genre, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;

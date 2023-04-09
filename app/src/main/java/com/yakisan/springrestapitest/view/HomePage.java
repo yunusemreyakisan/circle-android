@@ -1,11 +1,15 @@
 package com.yakisan.springrestapitest.view;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,7 +64,29 @@ public class HomePage extends AppCompatActivity {
         StaggeredGridLayoutManager sgm = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         binding.rvGames.setLayoutManager(sgm);
         games = new ArrayList<>();
-        adapter = new GameAdapter(this, games);
+        adapter = new GameAdapter(getApplicationContext(), games, new GameAdapter.ClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Game model = games.get(position);
+                Log.e("Clicked: ", model.getName());
+                viewModel.assign(position, games, getApplicationContext());
+            }
+
+            @Override
+            public void onItemLongClick(View v, int position) {
+                Game model = games.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomePage.this);
+                builder.setTitle("Emin misiniz?");
+                builder.setMessage(model.getName() + " isimli oyunu silmek istediğinizden emin misiniz?");
+                builder.setNegativeButton("Hayır", null);
+                builder.setPositiveButton("Evet", (dialogInterface, i) -> {
+                    Log.e("Silinen oyun: ", model.getName());
+                    viewModel.deleteGameByID(binding, getApplicationContext(), adapter, model.getId(), games);
+                    adapter.notifyDataSetChanged();
+                });
+                builder.show();
+            }
+        });
         binding.rvGames.setAdapter(adapter);
     }
 

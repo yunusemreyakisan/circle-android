@@ -39,7 +39,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.VH> {
         this.list = list;
     }
 
-    public GameAdapter(Context context, ArrayList<Game> list, ClickListener clickListener){
+    public GameAdapter(Context context, ArrayList<Game> list, ClickListener clickListener) {
         this.context = context;
         this.list = list;
         GameAdapter.clickListener = clickListener;
@@ -67,17 +67,17 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.VH> {
     }
 
 
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
     //ViewHolder
-    public static class VH extends RecyclerView.ViewHolder  implements View.OnClickListener, View.OnLongClickListener{
+    public static class VH extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView name, description, genre;
         ImageView imgBig;
         CardView card;
+
         public VH(@NonNull View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.materialCardView);
@@ -116,6 +116,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.VH> {
     //Interface
     public interface ClickListener {
         void onItemClick(View v, int position);
+
         void onItemLongClick(View v, int position);
     }
 

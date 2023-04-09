@@ -7,7 +7,7 @@
     tools:context=".view.AddNewGame">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutAddNewGame"
+        android:id="@+id/appBarLayoutUpdateGame"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,12 +18,11 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Yeni Oyun Ekle"
+            app:title="Oyunu Güncelle"
             app:titleCentered="true"
             app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldOyunIsmiWrapper"
@@ -38,13 +37,13 @@
         app:boxCornerRadiusTopStart="10dp"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutAddNewGame"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutUpdateGame"
         app:startIconContentDescription="game icon desc"
         app:startIconDrawable="@drawable/ic_game"
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textFieldOyunIsmi"
+            android:id="@+id/textFieldOyunIsmiUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -69,7 +68,7 @@
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textFieldOyunAciklamasi"
+            android:id="@+id/textFieldOyunAciklamasiUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -94,7 +93,7 @@
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textFieldOyunTuru"
+            android:id="@+id/textFieldOyunTuruUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -119,25 +118,24 @@
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textFieldOyunImageUrl"
+            android:id="@+id/textFieldOyunImageUrlUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/containedButton"
+        android:id="@+id/btnUpdateGame"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Oyunu kaydet"
+        android:text="Oyunu Güncelle"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldOyunImageUrlWrapper"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textFieldOyunImageUrlWrapper" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

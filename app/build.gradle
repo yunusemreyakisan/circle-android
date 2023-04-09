@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -34,6 +36,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.9'
+    implementation 'com.google.firebase:firebase-analytics:20.1.2'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.6'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.1'
     def lifeCycleExtensionVersion = '1.1.1'
     def rxJavaVersion = '2.2.8' //RxJava
     def rxAndroidVersion = '2.1.1'
